@@ -1,6 +1,8 @@
 package com.ibeus.Comanda.Digital.service;
 
+import com.ibeus.Comanda.Digital.model.Cliente;
 import com.ibeus.Comanda.Digital.model.Motoboy;
+import com.ibeus.Comanda.Digital.model.Pedido;
 import com.ibeus.Comanda.Digital.repository.MotoboyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,9 @@ public class MotoboyService {
 
     @Autowired
     private MotoboyRepository motoboyRepository;
+    @Autowired
+    private PedidoService pedidoService;
+
 
 
     public boolean iniciarTrabalho(Long id) {
@@ -27,6 +32,22 @@ public class MotoboyService {
         }
         return false;
     }
+
+    public String obterEnderecoECliente(Long pedidoId) {
+        Optional<Pedido> pedidoOptional = pedidoService.buscarPedidoPorId(pedidoId);
+        if (pedidoOptional.isPresent()) {
+            Pedido pedido = pedidoOptional.get();
+            Cliente cliente = pedido.getCliente();
+            return "Destinatário: " + cliente.getNome() + ", Endereço: " + cliente.getEndereco();
+        }
+        return "Pedido não encontrado!";
+    }
+
+    public boolean finalizarPedido(Long pedidoId) {
+        return pedidoService.finalizarPedido(pedidoId);
+    }
+
+
 }
 
 

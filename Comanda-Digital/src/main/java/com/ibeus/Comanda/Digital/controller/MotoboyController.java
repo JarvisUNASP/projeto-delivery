@@ -24,4 +24,26 @@ public class MotoboyController {
         }
     }
 
+    //Teste
+    @GetMapping("/{pedidoId}/pedido-info")
+    public ResponseEntity<String> obterEnderecoECliente(@PathVariable Long pedidoId) {
+        String resposta = motoboyService.obterEnderecoECliente(pedidoId);
+        return ResponseEntity.ok(resposta);
+    }
+
+    @PostMapping("/{pedidoId}/finalizarPedido")
+    public ResponseEntity<String> finalizarPedido(@PathVariable Long pedidoId) {
+        boolean sucesso = motoboyService.finalizarPedido(pedidoId);
+        if (sucesso) {
+            return ResponseEntity.ok("Pedido finalizado com sucesso.");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Falha ao finalizar o pedido.");
+        }
+    }
+
+
+
+
+
+
 }
