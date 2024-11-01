@@ -1,0 +1,73 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+
+.logo-da-empresa {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  margin: 0px;
+  margin-right: 10px;
+  
+}
+
+.Icone-carrinho {
+  display: inline-block;
+  max-width: 50px;
+  max-height: 40px;
+  margin: 0 10px;
+  }
+  
+.Icone-GPS {
+  display: inline-block;
+  max-width: 50px;
+  max-height: 40px;
+  margin: 0 10px;
+}  
+
+.example-card {
+    margin-top: 20px;
+    max-width: 400px;
+    margin-bottom: 2px;
+    border-radius: 8px;
+    margin-left: 15px;
+  }
+
+.button_adicionar {
+  border-radius: 5px;
+  font-weight: bold;
+  font-family: 'Istok Web';
+  background-color: #AB7DC2;
+  padding: 4px 50px;
+  text-decoration: none;
+  color: black;
+  border: 2px #8B49AC solid;
+
+
+}  
+
+  .customizar {
+    font-weight: bold;
+    font-family: 'Istok Web';
+    white-space: nowrap;
+  }
+
+  .customizar_text_1, .customizar_text_2, .customizar_text_3 {
+    margin-top: 20px;
+    margin-bottom: 2px;
+    width: 230px;
+  }
+
+  .V1, .V2, .V3 {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
