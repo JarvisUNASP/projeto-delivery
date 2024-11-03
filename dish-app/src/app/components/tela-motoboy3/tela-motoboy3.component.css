@@ -88,7 +88,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -700%) rotate(45deg);
+        transform: translate(-50%, -600%) rotate(45deg);
     }
     
     .loader:before,
