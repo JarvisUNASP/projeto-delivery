@@ -1,0 +1,89 @@
+    .mobile-frame {
+        width: 360px; /* Largura típica de tela móvel */
+        max-width: 100%;
+        height: 640px; /* Altura típica de tela móvel */
+        max-height: 100vh;
+        margin: 0 auto; /* Centraliza horizontalmente */
+        border: 2px solid #ccc; /* Borda para simular um dispositivo */
+        border-radius: 16px; /* Borda arredondada para aparência de celular */
+        overflow: hidden; /* Evita overflow do conteúdo */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
+        background-color: #fff; /* Fundo branco */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+      }
+
+      .logo {
+        width: 150px;
+        height: auto;
+        margin-bottom: 20px;
+        align-self: center;
+      }
+
+      .icone-motoboy {
+        width: 50px;
+        height: auto;
+        margin-bottom: 20px;
+        align-self: center;
+      }
+
+      .p1 strong {
+        text-align: left;
+        margin-left: 20px;
+        color: black;
+    
+
+    }
+
+    .p1 {
+        text-align: left;
+        margin-left: 1px;
+        color: gray;
+    
+    }
+
+
+
+    .p2 strong {
+        text-align: left;
+        margin-left: 20px;
+        color: black;
+
+    }
+
+    .p2 {
+        text-align: left;
+        margin-left: 1px;
+        color: gray;
+    
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+
+    }
+
+    .button_proximo {
+        padding: 10px 20px;
+        background-color: white;
+        color: #007bff;;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-block-start: 50px;
+}
+
+    .button_voltar {
+        padding: 10px 20px;
+        background-color: white;
+        color: #007bff;;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-left: 250px;
+        margin-top: -43px;
+}
