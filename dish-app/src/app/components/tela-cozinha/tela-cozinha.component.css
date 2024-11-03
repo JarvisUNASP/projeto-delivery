@@ -1,0 +1,87 @@
+.comanda-pedidos {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 90px;
+}
+
+.comanda-pedidos h1 {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin-bottom: 70px;
+  text-align: center;
+}
+
+.pedidos {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.pedido {
+  border: 2px solid #ddd;
+  border-radius: 15px;
+  padding: 45px;
+  width: 250px;
+  text-align: center;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 400px; 
+}
+
+.nome-pedido {
+  font-size: 1.8em; 
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+
+
+.pedido-tempo-container {
+  border: 1px solid #000;
+  border-radius: 20px;
+  padding: 12px;
+  width: 100%;
+  margin-bottom: 1px;
+  text-align: center;
+}
+
+.pedido-tempo {
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.ingredientes {
+  width: 100%;
+}
+
+.ingredientes h5 {
+  font-size: 1em;
+  font-weight: bold;
+  margin: 10px 0 5px;
+  text-align: left;
+}
+
+.ingredientes ul {
+  list-style: none;
+  padding: 0;
+  font-size: 1em;
+  color: #666;
+  margin: 0 0 20px 0; 
+  text-align: center;
+}
+
+.finalizado {
+  background-color: transparent;
+  color: #1976d2;
+  font-weight: bold;
+  font-size: 1em;
+  text-transform: none;
+  text-decoration: underline;
+  box-shadow: none;
+  border: none;
+}
