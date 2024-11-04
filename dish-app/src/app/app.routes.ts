@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { InicialClienteComponent } from './components/inicial-cliente/inicial-cliente.component'
 import { PageBowlComponent } from './components/page-bowl/page-bowl.component';
 import { CarrinhoComponent } from './components/carrinho/carrinho.component';
 import { DetalhesDoPedidoComponent } from './components/detalhes-do-pedido/detalhes-do-pedido.component';
@@ -14,6 +15,7 @@ import { TelaCozinhaComponent } from './components/tela-cozinha/tela-cozinha.com
 
 export const routes: Routes = [
     { path: '', redirectTo: 'page-bowl', pathMatch: 'full' },
+    { path: 'inicial-cliente', component: InicialClienteComponent},
     { path: 'page-bowl', component: PageBowlComponent },
     { path: 'carrinho', component: CarrinhoComponent},
     { path: 'detalhes-do-pedido', component: DetalhesDoPedidoComponent},
@@ -24,5 +26,6 @@ export const routes: Routes = [
     { path: 'tela-motoboy4', component: TelaMotoboy4Component},
     { path: 'tela-motoboy5', component: TelaMotoboy5Component},
     { path: 'tela-cozinha', component: TelaCozinhaComponent},
+    
   
 ];
