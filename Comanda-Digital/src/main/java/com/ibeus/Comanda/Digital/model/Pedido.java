@@ -18,23 +18,7 @@ public class Pedido {
 
 
     private Long motoboyId;
-
+ //Enum Type String
     @Enumerated(EnumType.STRING)
-    //private StatusPedido status = StatusPedido.EM_TRANSPORTE;
-    private StatusPedido status = StatusPedido.PREPARANDO;
-
-    public void setMotoboyId(Long motoboyId) {
-        this.motoboyId = motoboyId;
-    }
-
-    public long getMotoboyId(){
-        return motoboyId;}
-
-    public StatusPedido getStatus() {
-        return status;
-    }
-
-    public void setStatus(String emTransporte) {
-        status = StatusPedido.EM_TRANSPORTE;
-    }
+    private StatusPedido status = StatusPedido.EM_TRANSPORTE;
 }
