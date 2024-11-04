@@ -62,12 +62,4 @@ public class MotoboyController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Motoboy não encontrado.");
         }
     }
-
-
-
-
-
-
-
-
 }
