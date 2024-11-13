@@ -1,3 +1,4 @@
+//atribui um pedido ao primeiro motoboy disponível
 package com.ibeus.Comanda.Digital.service;
 
 import com.ibeus.Comanda.Digital.model.Motoboy;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Service
 public class CozinhaService {
 
+    //acessa os dados de motoboy e pedido
     @Autowired
     private MotoboyRepository motoboyRepository;
 
@@ -23,7 +25,7 @@ public class CozinhaService {
         // Busca o primeiro motoboy disponível
         Optional<Motoboy> motoboyOptional = motoboyRepository.findAll().stream()
                 .filter(Motoboy::isDisponivel)
-                .findFirst();
+                .findFirst(); //percorre os motoboys até encontrar o que isDisponivel = true
 
         Optional<Pedido> pedidoOptional = pedidoRepository.findById(pedidoId);
 
@@ -31,7 +33,7 @@ public class CozinhaService {
             Motoboy motoboy = motoboyOptional.get();
             Pedido pedido = pedidoOptional.get();
 
-            // Verifica se o pedido está no status "PREPARANDO" para permitir a atribuição
+            // Verifica se o pedido está no status "PREPARANDO"
             if (pedido.getStatus() != StatusPedido.PREPARANDO) {
                 return false; // Pedido não está em um estado que permite atribuição
             }
