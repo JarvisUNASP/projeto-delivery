@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 @RequestMapping("/clientes")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -24,5 +27,21 @@ public class ClienteController {
         return ResponseEntity.ok(novoCliente);
     }
 
-    /*Testar controller no Swagger através do JSON, passar id:0 para criar automaticamente*/
+    // Endpoint para obter todos os clientes
+    @GetMapping
+    public ResponseEntity<List<Cliente>> listarTodosClientes() {
+        List<Cliente> clientes = clienteService.buscarTodosClientes();
+        return ResponseEntity.ok(clientes);
+    }
+
+    // Endpoint para obter um cliente por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarClientePorId(@PathVariable Long id) {
+        Optional<Cliente> cliente = clienteService.buscarClientePorId(id);
+        if (cliente.isPresent()) {
+            return ResponseEntity.ok(cliente.get());
+        } else {
+            return ResponseEntity.status(404).body("Cliente não encontrado.");
+        }
+    }
 }

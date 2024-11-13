@@ -2,6 +2,7 @@ package com.ibeus.Comanda.Digital.controller;
 
 import com.ibeus.Comanda.Digital.model.Pedido;
 import com.ibeus.Comanda.Digital.service.PedidoService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +16,16 @@ public class PedidoController {
     @Autowired
     private PedidoService pedidoService;
 
+    // Endpoint para criar um pedido com o status inicial "PREPARANDO" e associar o único carrinho existente
     @PostMapping("/criar")
-    public ResponseEntity<Pedido> criarPedidoDoCarrinho(@RequestParam Long clienteId, @RequestParam Long motoboyId) {
+    public ResponseEntity<?> criarPedidoDoCarrinho(@RequestParam Long clienteId) {
         try {
-            Pedido pedido = pedidoService.criarPedidoDoCarrinho(clienteId, motoboyId);
+            Pedido pedido = pedidoService.criarPedidoDoCarrinho(clienteId);
             return ResponseEntity.ok(pedido);
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar pedido. Verifique as informações fornecidas.");
         }
     }
 
@@ -32,6 +36,7 @@ public class PedidoController {
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
+    /*
     @PostMapping("/finalizar/{pedidoId}")
     public ResponseEntity<String> finalizarPedido(@PathVariable Long pedidoId) {
         boolean finalizado = pedidoService.finalizarPedido(pedidoId);
@@ -40,7 +45,5 @@ public class PedidoController {
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("INFELIZMENTE, NAO CONSEGUIMOS ADC O PEDIDO.");
         }
-
-
-    }
+    } */
 }

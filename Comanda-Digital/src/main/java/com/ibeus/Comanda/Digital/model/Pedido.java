@@ -8,17 +8,22 @@ import lombok.Data;
 @Data
 public class Pedido {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    Long Id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    @ManyToOne
+    @JoinColumn(name = "carrinho_id")
+    private Carrinho carrinho;
 
     private Long motoboyId;
- //Enum Type String
+
     @Enumerated(EnumType.STRING)
     private StatusPedido status = StatusPedido.EM_TRANSPORTE;
+
+    private Double valorTotal; // Novo campo para armazenar o valor total do carrinho
 }

@@ -7,6 +7,7 @@ import com.ibeus.Comanda.Digital.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,10 +20,7 @@ public class PedidoService {
     private CarrinhoRepository carrinhoRepository;
 
     @Autowired
-    private CarrinhoService carrinhoService;
-
-    @Autowired
-    private ClienteRepository clienteRepository; // Novo: injeção do ClienteRepository
+    private ClienteRepository clienteRepository;
 
     public Optional<Pedido> buscarPedidoPorId(Long pedidoId) {
         return pedidoRepository.findById(pedidoId);
@@ -41,20 +39,25 @@ public class PedidoService {
         return false;
     }
 
-    // Novo método para criar um pedido a partir do carrinho atual
-    public Pedido criarPedidoDoCarrinho(Long clienteId, Long motoboyId) {
-        // Obter o carrinho atual
-        Carrinho carrinho = carrinhoService.getCarrinho();
-
+    // Método para criar um pedido com o único carrinho disponível
+    public Pedido criarPedidoDoCarrinho(Long clienteId) {
         // Buscar o cliente no banco de dados usando o ID
         Cliente cliente = clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 
-        // Criar um novo pedido e associar o cliente e motoboy
+        // Buscar o único carrinho existente
+        List<Carrinho> carrinhos = carrinhoRepository.findAll();
+        if (carrinhos.isEmpty()) {
+            throw new RuntimeException("Nenhum carrinho encontrado.");
+        }
+        Carrinho carrinho = carrinhos.get(0); // Assume que existe apenas um carrinho
+
+        // Criar um novo pedido e associar o cliente e o carrinho
         Pedido pedido = new Pedido();
-        pedido.setCliente(cliente); // Define o cliente encontrado
-        pedido.setMotoboyId(motoboyId);
-        pedido.setStatus(StatusPedido.EM_TRANSPORTE);
+        pedido.setCliente(cliente);
+        pedido.setCarrinho(carrinho);
+        pedido.setStatus(StatusPedido.PREPARANDO); // Define o status inicial como PREPARANDO
+        pedido.setValorTotal(carrinho.getValorTotal()); // Define o valor total do pedido com base no carrinho
 
         // Salvar o pedido
         pedidoRepository.save(pedido);

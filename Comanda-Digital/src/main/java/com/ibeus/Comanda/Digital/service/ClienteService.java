@@ -5,6 +5,9 @@ import com.ibeus.Comanda.Digital.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ClienteService {
 
@@ -19,5 +22,13 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
-    //Funções de editar e remover cliente?
+    // Método para buscar todos os clientes
+    public List<Cliente> buscarTodosClientes() {
+        return clienteRepository.findAll();
+    }
+
+    // Método para buscar um cliente por ID
+    public Optional<Cliente> buscarClientePorId(Long id) {
+        return clienteRepository.findById(id);
+    }
 }
