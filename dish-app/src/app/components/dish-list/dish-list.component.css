@@ -1,0 +1,27 @@
+.frame {
+  max-width: 800px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px; /* Adiciona espaçamento interno */
+  display: flex; /* Organiza o conteúdo em uma linha se necessário */
+  flex-direction: column; /* Coluna para melhor usabilidade em tablet */
+  gap: 15px; /* Espaço entre elementos */
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
+}
+
+.example-container {
+      overflow: auto;
+      
+    }
+    
+    table {
+      width: 100%;
+    }
+
+  .adicionar-button, .remover-button{
+    font-size: 20px;
+    margin-right: 20px;
+
+  }    

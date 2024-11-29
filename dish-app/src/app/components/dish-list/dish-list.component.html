@@ -1,23 +1,73 @@
 <!-- src/app/components/dish-list/dish-list.component.html -->
+<!-- 
+<div class="frame">
+  <h2>Dish List</h2>
+  <table class="mat-elevation-z8 demo-table">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let dish of dishes">
+      <td>{{ dish.id }}</td>
+      <td>{{ dish.name }}</td>
+      <td>{{ dish.description }}</td>
+      <td>{{ dish.price }}</td>
+      <td>
+        <button (click)="deleteDish(dish.id!)">Delete</button>
+        <a [routerLink]="['/edit-dish', dish.id]">Edit</a>
+      </td>
+    </tr>
+  </table>
+  <a routerLink="/add-dish">Add New Dish</a>
+</div> -->
 
-<h2>Dish List</h2>
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Price</th>
-    <th>Actions</th>
-  </tr>
-  <tr *ngFor="let dish of dishes">
-    <td>{{ dish.id }}</td>
-    <td>{{ dish.name }}</td>
-    <td>{{ dish.description }}</td>
-    <td>{{ dish.price }}</td>
-    <td>
-      <button (click)="deleteDish(dish.id!)">Delete</button>
-      <a [routerLink]="['/edit-dish', dish.id]">Edit</a>
-    </td>
-  </tr>
-</table>
-<a routerLink="/add-dish">Add New Dish</a>
+  <div class="frame">
+  <h3> Criar pratos </h3>
+  <table mat-table [dataSource]="dishes" class="mat-elevation-z8 demo-table">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let dish">{{dish.id}}</td>
+    </ng-container>
+  
+    <!-- Nome Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let dish">{{dish.name}}</td>
+    </ng-container>
+  
+    <!-- Descricao Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Descrição</th>
+      <td mat-cell *matCellDef="let dish">{{dish.description}}</td>
+    </ng-container>
+  
+    <!-- Valor Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Valor</th>
+      <td mat-cell *matCellDef="let dish">{{dish.price | currency}}</td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Ações</th>
+      <td mat-cell *matCellDef="let dish">
+        <button mat-button (click)="deleteDish(dish.id)">Deletar</button>
+        <a mat-button [routerLink]="['/editar-prato', dish.id]">Editar</a>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div class="button_adicionar_container">
+    <button mat-raised-button [routerLink]="['/criar-prato']" class="adicionar-button">
+      Adicionar Prato
+    </button>
+
+  </div> 
+</div>

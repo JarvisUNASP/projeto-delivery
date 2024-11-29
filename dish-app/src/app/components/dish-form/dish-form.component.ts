@@ -1,19 +1,18 @@
-// src/app/components/dish-form/dish-form.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DishService, Dish } from '../../services/dish.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+
 @Component({
-  selector: 'app-dish-form',
-  templateUrl: './dish-form.component.html',
-  styleUrls: ['./dish-form.component.css'],
+  selector: 'app-pratos',
   standalone: true,
-  imports: [FormsModule, CommonModule]
+  imports: [FormsModule, CommonModule, RouterModule],
+  templateUrl: './dish-create.component.html',
+  styleUrl: './dish-create.component.css'
 })
-export class DishFormComponent implements OnInit {
+export class DishFormComponent implements OnInit{
   dish: Dish = {
     name: '',
     description: '',
@@ -40,12 +39,13 @@ export class DishFormComponent implements OnInit {
   saveDish() {
     if (this.isEdit) {
       this.dishService.updateDish(this.dish.id!, this.dish).subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/listar-pratos']);
       });
     } else {
       this.dishService.createDish(this.dish).subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/listar-pratos']);
       });
     }
   }
+
 }

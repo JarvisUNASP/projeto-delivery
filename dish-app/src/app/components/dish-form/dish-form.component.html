@@ -1,15 +1,26 @@
 <!-- src/app/components/dish-form/dish-form.component.html -->
-
-<h2>{{ isEdit ? 'Edit Dish' : 'Add Dish' }}</h2>
+<div class="frame">
+<h2>{{ isEdit ? 'Edit Dish' : 'Adicionar prato' }}</h2>
 <form (ngSubmit)="saveDish()">
-  <label for="name">Name:</label>
-  <input type="text" id="name" [(ngModel)]="dish.name" name="name" required>
+  <label class="nome" for="name">Nome:</label>
+  <input class="name" type="text" id="name" [(ngModel)]="dish.name" name="name" required>
 
-  <label for="description">Description:</label>
-  <input type="text" id="description" [(ngModel)]="dish.description" name="description" required>
+  <br>
 
-  <label for="price">Price:</label>
-  <input type="number" id="price" [(ngModel)]="dish.price" name="price" required>
+  <label class="descricao" for="description">Descrição:</label>
+  <input class="description" type="text" id="description" [(ngModel)]="dish.description" name="description" required>
 
-  <button type="submit">{{ isEdit ? 'Update' : 'Add' }}</button>
+  <br>
+
+  <label class="valor" for="price">Preço:</label>
+  <input class="price" type="number" id="price" [(ngModel)]="dish.price" name="price" required>
+
+  <br>
+
+  <a routerLink="/listar-pratos" class="button_voltar">Voltar</a>
+
+  <button class="button_adicionar" type="submit">{{ isEdit ? 'Update' : 'Adicionar' }}</button>
+
+  
 </form>
+</div>
