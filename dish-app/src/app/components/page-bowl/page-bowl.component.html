@@ -1,0 +1,56 @@
+<div class="mobile-frame">
+  <div class="container">
+      <img src="https://i.ibb.co/HnQRd23/seta-esquerda.png" alt="ícone de seta" class="icone_de_seta" routerLink="/inicial-cliente">
+      <img src="https://i.ibb.co/sPycw2G/logo.jpg" alt="logo-da-empresa" class="logo-da-empresa" routerLink="/inicial-cliente">
+      <img src="https://i.ibb.co/3crZCy1/carrinho-de-compras.png" alt="ícone do carrinho" class="Icone-carrinho" routerLink="/carrinho">
+  </div>
+
+  <mat-card 
+  class="example-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title class="customizar" (click)="openModal()" style="cursor: pointer; width: 100px;">Bowl 700ml</mat-card-title>
+          <mat-card-subtitle class="customizar_subtitulo">Grande</mat-card-subtitle>
+          <mat-card-subtitle  class= "customizar_text_1">Açaí no copo de 700ml. Com até 6 acompanhamentos.</mat-card-subtitle>
+          <mat-card-subtitle class="V1">R$ 20,00</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+              <a routerLink="/carrinho" class="button_adicionar">Adicionar</a>
+        </mat-card-content>
+    </mat-card>
+
+
+
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title  class="customizar" (click)="openModal()" style="cursor: pointer;">Bowl 500ml</mat-card-title>
+          <mat-card-subtitle class="customizar_subtitulo">Médio</mat-card-subtitle>
+          <mat-card-subtitle  class= "customizar_text_2">Açaí no copo de 500ml. Com até 4 acompanhamentos.</mat-card-subtitle>
+          <mat-card-subtitle class="V2">R$ 15,00</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+          <a routerLink="/carrinho" class="button_adicionar">Adicionar</a>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="example-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title class="customizar" (click)="openModal()" style="cursor: pointer;">Bowl 300ml</mat-card-title>
+          <mat-card-subtitle class="customizar_subtitulo">Pequeno</mat-card-subtitle>
+          <mat-card-subtitle  class= "customizar_text_3">Açaí no copo de 300ml. Com até 3 acompanhamentos.</mat-card-subtitle>
+          <mat-card-subtitle class="V3">R$ 9,00</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+          <a routerLink="/carrinho" class="button_adicionar">Adicionar</a>
+        </mat-card-content>
+    </mat-card>
+
+    <button mat-button (click)="openModal()"></button>
+</div>  
+
+
