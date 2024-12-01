@@ -8,12 +8,13 @@
     <div>
         <mat-card 
 class="example-card" appearance="outlined">
-    <mat-card-header>
+    <mat-card-header *ngFor="let order of orders">
       <mat-card-title-group>
-        <mat-card-title class="customizar_pedido" style="cursor: pointer;">Pedido N°01</mat-card-title>
-        <mat-card-subtitle class="customizar_endereco">Endereço: </mat-card-subtitle>
-        <mat-card-subtitle  class= "customizar_text_1">Status: </mat-card-subtitle>
-        <mat-card-subtitle class="V1"> Valor: </mat-card-subtitle>
+        <mat-card-title class="customizar_pedido" style="cursor: pointer;">Pedido N°{{order.id}}</mat-card-title>
+        <mat-card-subtitle class="customizar_endereco">Cliente: {{order.cliente.nome}}</mat-card-subtitle>
+        <mat-card-subtitle class="customizar_endereco">Endereço: {{order.cliente.endereco}}</mat-card-subtitle>
+        <mat-card-subtitle  class= "customizar_text_1">Status: {{order.status}}</mat-card-subtitle>
+        <mat-card-subtitle class="V1"> Valor: {{order.valorTotal}}</mat-card-subtitle>
       </mat-card-title-group>
     </mat-card-header>
   </mat-card>

@@ -37,9 +37,8 @@
         font-family: 'Istok Web';
         font-weight: bold;
         font-size: 20px;
-        margin-left: 20px;
         margin-top: 30px;
-        margin-bottom: 0px;
+        margin-bottom: 30px;
 
     }
 
@@ -55,27 +54,20 @@
         margin-bottom: 7px;
     }
 
-    .nome{
-        width: 420px;
-        max-width: 100%;
-        margin-left: 3px;
-        margin-top: 0px;
-
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
     }
 
-    .endereco {
-        width: 420px;
-        max-width: 100%;
-        margin-left: 3px;
-        margin-top: 0px;
-    }
-
-    .telefone {
-        width: 420px;
-        max-width: 100%;
-        margin-left: 3px;
-        margin-top: 0px;
-
+    .nome, .endereco, .telefone {
+        font-family: Arial, sans-serif;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        font-size: 24px;
+        margin-left: 4px;
+        margin-right: 5px;
     }
 
     td {
@@ -110,5 +102,7 @@
         text-decoration: none;
         color: black;
         border: 2px #8B49AC solid;
+        margin-top: 30px;
 
     }
+

@@ -9,8 +9,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-pratos',
   standalone: true,
   imports: [FormsModule, CommonModule, RouterModule],
-  templateUrl: './dish-create.component.html',
-  styleUrl: './dish-create.component.css'
+  templateUrl: './dish-form.component.html',
+  styleUrl: './dish-form.component.css'
 })
 export class DishFormComponent implements OnInit{
   dish: Dish = {

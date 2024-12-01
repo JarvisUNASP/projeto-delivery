@@ -1,6 +1,6 @@
 <!-- src/app/components/dish-form/dish-form.component.html -->
 <div class="frame">
-<h2>{{ isEdit ? 'Edit Dish' : 'Adicionar prato' }}</h2>
+<h2>{{ isEdit ? 'Editar Prato' : 'Adicionar prato' }}</h2>
 <form (ngSubmit)="saveDish()">
   <label class="nome" for="name">Nome:</label>
   <input class="name" type="text" id="name" [(ngModel)]="dish.name" name="name" required>

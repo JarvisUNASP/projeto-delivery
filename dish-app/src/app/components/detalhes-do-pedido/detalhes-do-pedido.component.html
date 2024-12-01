@@ -8,14 +8,32 @@
 
   <hr class="customizar_hr">
 
+  <div class="inputs">
   <div class="texto_detalhes">
-      <h1 class="Texto_detalhes">Endereço de entrega</h1>
+      <h1 class="Texto_detalhes">Dados do cliente</h1>
   </div>
+  <form (ngSubmit)="submitOrder()">
+    <label class="nome" for="name">Nome:</label>
+    <input class="name" type="text" id="name" [(ngModel)]="cliente.nome" name="name" required>
 
-  <table class="nome_titulo"><tr>
+    <br>
+
+    <label class="endereco" for="address">Endereço:</label>
+    <input class="address" type="text" id="address" [(ngModel)]="cliente.endereco" name="address" required>
+
+    <br>
+
+    <label class="telefone" for="phone">Telefone:</label>
+    <input class="phone" type="text" id="phone" [(ngModel)]="cliente.telefone" name="phone" required>
+
+    <br>
+
+    <button class="button_finalizar" type="submit">Finalizar Pedido</button>
+  </form>
+  <!-- <table class="nome_titulo"><tr>
         <td><mat-form-field class="nome">
           <mat-label>Nome</mat-label>
-          <input matInput>
+          <input matInput []>
         </mat-form-field></td>
       </tr></table>
 
@@ -24,7 +42,7 @@
             <mat-label>Endereço</mat-label>
             <input matInput>
           </mat-form-field></td>
-          <!--<td><mat-form-field class="numero">
+          <td><mat-form-field class="numero">
               <mat-label>N°</mat-label>
               <input matInput>
             </mat-form-field></td>
@@ -39,7 +57,7 @@
         <td><mat-form-field class="CEP">
           <mat-label>CEP</mat-label>
           <input matInput placeholder="Ex. 05881000">
-        </mat-form-field></td> -->
+        </mat-form-field></td>
       </tr></table>
 
       <table class="telefone_titulo"><tr>
@@ -60,6 +78,7 @@
             </mat-select>
           </mat-form-field>
         </form>
+  </div>
 
-        <a routerLink="/detalhes-do-pedido" class="button_finalizar" (click)="openSnackBar()">Finalizar Pedido</a>
+        <a routerLink="/detalhes-do-pedido" class="button_finalizar" (click)="openSnackBar()">Finalizar Pedido</a> -->
 </div>

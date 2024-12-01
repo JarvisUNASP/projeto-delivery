@@ -1,13 +1,12 @@
 package com.ibeus.Comanda.Digital.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "itemCarrinho")
+@Table(name = "itens_carrinho")
 @Data
-public class itemCarrinho {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,11 +16,6 @@ public class itemCarrinho {
 
     private Double precoTotal;
 
-    @ManyToOne
+    @OneToOne
     private Dish dish;
-
-    @ManyToOne
-    @JoinColumn(name = "carrinho_id")
-    @JsonIgnore
-    private Carrinho carrinho;
 }

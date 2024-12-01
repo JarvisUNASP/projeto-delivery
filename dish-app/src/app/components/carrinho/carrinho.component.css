@@ -1,50 +1,108 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 .mobile-frame {
-    width: 430px; /* Largura típica de tela móvel */
-    max-width: 100%;
-    height: 932px; /* Altura típica de tela móvel */
-    margin: 0 auto; /* Centraliza horizontalmente */
-    border: 2px solid #ccc; /* Borda para simular um dispositivo */
-    border-radius: 16px; /* Borda arredondada para aparência de celular */
-    overflow: hidden; /* Evita overflow do conteúdo */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
-    background-color: #fff; /* Fundo branco */
-  
+  width: 430px; /* Largura típica de tela móvel */
+  max-width: 100%;
+  height: 932px; /* Altura típica de tela móvel */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  border: 2px solid #ccc; /* Borda para simular um dispositivo */
+  border-radius: 16px; /* Borda arredondada para aparência de celular */
+  overflow: hidden; /* Evita overflow do conteúdo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidade */
+  background-color: #fff; /* Fundo branco */
+
+}
+
+  .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 0px;
+
   }
 
-    .container {
+  .logo-da-empresa {
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    margin: 0px;
+    margin-right: 10px;
+    
+  }
+
+  .Icone-carrinho {
+    display: inline-block;
+    max-width: 50px;
+    max-height: 40px;
+    margin: 0 10px;
+    }
+    
+  .Icone-GPS {
+    display: inline-block;
+    max-width: 50px;
+    max-height: 40px;
+    margin: 0 10px;
+  }  
+
+  .icone_de_seta {
+    max-width: 30px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+  .example-card {
+      margin-top: 20px;
+      max-width: 400px;
+      margin-bottom: 2px;
+      border-radius: 8px;
+      margin-left: 15px;
+    }
+
+  .button_adicionar {
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: 'Istok Web';
+    background-color: #AB7DC2;
+    padding: 4px 50px;
+    text-decoration: none;
+    color: black;
+    border: 2px #8B49AC solid;
+  }  
+
+  .button_pedir {
+    border-radius: 5px;
+    font-weight: bold;
+    font-family: 'Istok Web';
+    font-size: 25px;
+    background-color: #AB7DC2;
+    padding: 10px 50px;
+    text-decoration: none;
+    color: black;
+    border: 2px #8B49AC solid;
+  }  
+    .botoes {
         display: flex;
-        margin-left: 20px;
+        flex-direction: column;
         align-items: center;
-        margin-bottom: 700px;
-
+        margin-top: 20px;
     }
 
-    .icone_de_seta {
-        max-width: 30px;
-        height: 40px;
-        margin-left: 10px;
-
+    .customizar {
+      font-weight: bold;
+      font-family: 'Istok Web';
+      white-space: nowrap;
     }
 
-    .Texto {
-        font-family: 'Istok Web';
-        font-size: 30px;
-        margin-left: 50px;
-        margin-top: 30px;
+    .customizar_text_1, .customizar_text_2, .customizar_text_3 {
+      margin-top: 20px;
+      margin-bottom: 2px;
+      width: 200px;
     }
 
-    .button_proximo {
-        border-radius: 5px;
-        font-weight: bold;
-        font-family: 'Istok Web';
-        background-color: #AB7DC2;
-        font-size: 25px;
-        padding: 8px 110px;
-        text-decoration: none;
-        color: black;
-        border: 2px #8B49AC solid;
-        margin-left: 50px;
-
+    .V1, .V2, .V3 {
+      font-weight: bold;
+      margin-top: 10px;
+      margin-bottom: 20px;
     }

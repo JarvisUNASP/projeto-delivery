@@ -12,14 +12,12 @@ import { TelaMotoboy5Component } from './components/tela-motoboy5/tela-motoboy5.
 import { TelaCozinhaComponent } from './components/tela-cozinha/tela-cozinha.component';
 import { DishListComponent } from './components/dish-list/dish-list.component';
 import { DishFormComponent } from './components/dish-form/dish-form.component';
-import { CriarPratosComponent } from './components/criar-pratos/criar-pratos.component';
-import { DishCreateComponent } from './components/dish-form/dish-form.component';
 
 
 export const routes: Routes = [
-  { path: 'listar-pratos', component: DishListComponent },
-  { path: 'criar-prato', component: DishCreateComponent},
-  { path: 'editar-prato/:id', component: DishCreateComponent },
+  { path: 'listar-pratos', component: DishListComponent }, // Funcionando
+  { path: 'criar-prato', component: DishFormComponent}, // Funcionando
+  { path: 'editar-prato/:id', component: DishFormComponent }, // Funcionando
   { path: 'inicial-cliente', component: InicialClienteComponent},
   { path: 'page-bowl', component: PageBowlComponent },
   { path: 'carrinho', component: CarrinhoComponent },

@@ -1,41 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ModalCartComponent } from './modal-cart/modal-cart.component';
-import { RouterModule } from '@angular/router';
-import { PageBowlService, BowlItem } from '../../services/page-bowl.service';
+import { Router, RouterModule } from '@angular/router';
+import { DishService, Dish } from '../../services/dish.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-page-bowl',
   standalone: true,
-  imports: [MatCardModule, MatButtonModule, MatDialogModule, RouterModule],
+  imports: [MatCardModule, MatButtonModule, MatDialogModule, RouterModule, CommonModule],
   templateUrl: './page-bowl.component.html',
   styleUrl: './page-bowl.component.css'
 })
 export class PageBowlComponent implements OnInit {
-  bowls: BowlItem[] = [];
+  dishes: Dish[] = [];
 
-  constructor(private dialog: MatDialog, private bowlService: PageBowlService) {}
+  constructor(private router: Router, private dishService: DishService, private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.loadBowls();
+    this.loadDishes();
   }
 
-  loadBowls(): void {
-    this.bowlService.getBowls().subscribe(data => {
-      this.bowls = data;
+  loadDishes(): void {
+    this.dishService.getDishes().subscribe(data => {
+      this.dishes = data;
     });
   }
 
-  openModal(): void {
-    const dialogRef = this.dialog.open(ModalCartComponent, {
-      width: '700px',
-      height:'400px',
-      panelClass: 'customizar-modal',
-      position: {top: '-100%', left: '5%' },
-
-    
+  addToCart(dishId: number|undefined): void {
+    if(dishId) this.cartService.createItem(dishId).subscribe(data => {
+      this.router.navigate(['/carrinho']);
     });
- }
+  }
 }

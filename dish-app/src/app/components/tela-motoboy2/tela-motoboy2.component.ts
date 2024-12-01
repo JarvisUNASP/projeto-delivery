@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { MotoboyService } from '../../services/motoboy.service';
 
 @Component({
   selector: 'app-tela-motoboy2',
@@ -11,13 +12,26 @@ import { RouterModule } from '@angular/router';
 
 
 export class TelaMotoboy2Component implements OnInit {
-  constructor(private router: RouterModule) {}
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private motoboyService: MotoboyService
+  ) {}
+  motoboyId: number = 0;
 
   ngOnInit(): void {
     const delay = 7000;
 
-    setTimeout(() => {
-      window.location.href = '/tela-motoboy3';
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.motoboyId = parseInt(params['id']);
+    });
+
+    setInterval(() => {
+      this.motoboyService.getStatus(this.motoboyId).subscribe(data => {
+        if(data == "Status do Motoboy: Indisponível"){
+          this.router.navigate(['/tela-motoboy3'], { queryParams: { id: this.motoboyId } });
+        }
+      });
     }, delay);
   }
 }

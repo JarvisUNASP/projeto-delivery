@@ -5,7 +5,29 @@
         </a>
         <h1 class="Texto">Carrinho</h1>
     </div>
+    
 
-    <a routerLink="/detalhes-do-pedido" class="button_proximo">Próximo</a>
+  <div>
+    <mat-card class="example-card" appearance="outlined" *ngFor="let item of itens">
+      <mat-card-header>
+        <mat-card-title-group>
+          <mat-card-title class="customizar" style="cursor: pointer; width: 100px;">{{item.dish.name}}</mat-card-title>
+          <mat-card-subtitle  class= "customizar_text_1">{{item.dish.description}}</mat-card-subtitle>
+          <mat-card-subtitle class="V1">Preço: {{item.dish.price}}</mat-card-subtitle>
+          <mat-card-subtitle class="V1">Quantidade: {{item.quantidade}}</mat-card-subtitle>
+        </mat-card-title-group>
+      </mat-card-header>
+      <mat-card-content>
+              <a class="button_adicionar" (click)="removeItem(item.id)">Remover Item</a>
+        </mat-card-content>
+    </mat-card>
+
+    </div>
+
+    <div class="botoes">
+        <a class="button_pedir" *ngIf="!isCartEmpty; else empty" routerLink="/detalhes-do-pedido">Próximo</a>
+        <ng-template #empty><p>Seu carrinho está vazio!</p></ng-template>
+    </div>
+
 
 </div>    
