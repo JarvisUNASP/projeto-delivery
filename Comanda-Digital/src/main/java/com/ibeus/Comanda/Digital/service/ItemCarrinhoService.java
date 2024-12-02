@@ -1,7 +1,7 @@
 package com.ibeus.Comanda.Digital.service;
 
 import com.ibeus.Comanda.Digital.model.Carrinho;
-import com.ibeus.Comanda.Digital.model.itemCarrinho;
+import com.ibeus.Comanda.Digital.model.ItemCarrinho;
 import com.ibeus.Comanda.Digital.model.Dish;
 import com.ibeus.Comanda.Digital.repository.ItemCarrinhoRepository;
 import com.ibeus.Comanda.Digital.repository.DishRepository;
@@ -24,33 +24,41 @@ public class ItemCarrinhoService {
     private CarrinhoService carrinhoService;
 
     // Listar todos os itens do carrinho
-    public List<itemCarrinho> findAll() {
+    public List<ItemCarrinho> findAll() {
         return itemCarrinhoRepository.findAll();
     }
 
     // Buscar um item específico pelo ID
-    public Optional<itemCarrinho> findById(Long id) {
+    public Optional<ItemCarrinho> findById(Long id) {
         return itemCarrinhoRepository.findById(id);
     }
 
     // Adicionar ou atualizar um item no carrinho
-    public itemCarrinho save(itemCarrinho item) {
-        // Verifica se o Dish está associado e calcula o precoTotal
-        if (item.getDish() != null && item.getQuantidade() != null) {
-            Dish dish = dishRepository.findById(item.getDish().getId())
-                    .orElseThrow(() -> new RuntimeException("Prato não encontrado"));
-            item.setPrecoTotal(dish.getPrice() * item.getQuantidade()); // Calcula o preço total
-        }
+    public ItemCarrinho save(Long dishId) {
+        Dish prato = dishRepository.findById(dishId).orElseThrow(() -> new RuntimeException("Prato não encontrado"));
+        Optional<ItemCarrinho> itemOpt = itemCarrinhoRepository.findByDish(prato);
+        ItemCarrinho item;
 
         // Obter o carrinho atual
         Carrinho carrinho = carrinhoService.getCarrinho();
-        item.setCarrinho(carrinho); // Atribuir o item ao carrinho
+
+        if(itemOpt.isPresent()){
+            item = itemOpt.get();
+            item.setQuantidade(item.getQuantidade() + 1);
+            item.setPrecoTotal(item.getPrecoTotal() + prato.getPrice());
+        } else {
+            item = new ItemCarrinho();
+            item.setDish(prato);
+            item.setPrecoTotal(prato.getPrice());
+            item.setQuantidade(1);
+            item.setCarrinho(carrinho);
+        }
 
         // Atualizar o valor total do carrinho
-        carrinho.setValorTotal(carrinho.getValorTotal() + item.getPrecoTotal());
+        carrinho.setValorTotal(carrinho.getValorTotal() + prato.getPrice());
 
         // Salvar o item no repositório e atualizar o carrinho
-        itemCarrinho savedItem = itemCarrinhoRepository.save(item);
+        ItemCarrinho savedItem = itemCarrinhoRepository.save(item);
         carrinhoService.getCarrinho().getItens().add(savedItem);
 
         return savedItem;
@@ -58,6 +66,9 @@ public class ItemCarrinhoService {
 
     // Remover um item do carrinho
     public void deleteById(Long id) {
+        Carrinho carrinho = carrinhoService.getCarrinho();
+        ItemCarrinho item = itemCarrinhoRepository.getById(id);
+        carrinho.setValorTotal(carrinho.getValorTotal() - item.getPrecoTotal());
         itemCarrinhoRepository.deleteById(id);
     }
 }

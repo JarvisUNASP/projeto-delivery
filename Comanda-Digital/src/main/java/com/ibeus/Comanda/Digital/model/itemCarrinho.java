@@ -5,9 +5,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
-@Table(name = "itemCarrinho")
+@Table(name = "itens_carrinho")
 @Data
-public class itemCarrinho {
+public class ItemCarrinho {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class itemCarrinho {
 
     private Double precoTotal;
 
-    @ManyToOne
+    @OneToOne
     private Dish dish;
 
     @ManyToOne

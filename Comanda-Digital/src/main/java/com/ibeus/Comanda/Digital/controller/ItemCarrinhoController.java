@@ -1,6 +1,6 @@
 package com.ibeus.Comanda.Digital.controller;
 
-import com.ibeus.Comanda.Digital.model.itemCarrinho;
+import com.ibeus.Comanda.Digital.model.ItemCarrinho;
 import com.ibeus.Comanda.Digital.service.ItemCarrinhoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,34 +19,33 @@ public class ItemCarrinhoController {
 
     // Listar todos os itens do carrinho
     @GetMapping
-    public ResponseEntity<List<itemCarrinho>> getAllItems() {
-        List<itemCarrinho> items = itemCarrinhoService.findAll();
+    public ResponseEntity<List<ItemCarrinho>> getAllItems() {
+        List<ItemCarrinho> items = itemCarrinhoService.findAll();
         return ResponseEntity.ok(items);
     }
 
     // Buscar um item específico pelo ID
     @GetMapping("/{id}")
-    public ResponseEntity<itemCarrinho> getItemById(@PathVariable Long id) {
+    public ResponseEntity<ItemCarrinho> getItemById(@PathVariable Long id) {
         return itemCarrinhoService.findById(id)
                 .map(item -> ResponseEntity.ok(item))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     // Adicionar um novo item no carrinho
-    @PostMapping
-    public ResponseEntity<itemCarrinho> createItem(@RequestBody itemCarrinho item) {
-        itemCarrinho savedItem = itemCarrinhoService.save(item);
+    @PostMapping("/{id}")
+    public ResponseEntity<ItemCarrinho> createItem(@PathVariable Long id) {
+        ItemCarrinho savedItem = itemCarrinhoService.save(id);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedItem);
     }
 
     // Atualizar um item no carrinho
     @PutMapping("/{id}")
-    public ResponseEntity<itemCarrinho> updateItem(@PathVariable Long id, @RequestBody itemCarrinho item) {
+    public ResponseEntity<ItemCarrinho> updateItem(@PathVariable Long id) {
         if (!itemCarrinhoService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        item.setId(id); // Garantir que o ID seja o correto
-        itemCarrinho updatedItem = itemCarrinhoService.save(item);
+        ItemCarrinho updatedItem = itemCarrinhoService.save(id);
         return ResponseEntity.ok(updatedItem);
     }
 

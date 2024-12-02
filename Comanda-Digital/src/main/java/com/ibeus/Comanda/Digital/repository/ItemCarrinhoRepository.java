@@ -1,7 +1,13 @@
 package com.ibeus.Comanda.Digital.repository;
 
-import com.ibeus.Comanda.Digital.model.itemCarrinho;
+import com.ibeus.Comanda.Digital.model.Dish;
+import com.ibeus.Comanda.Digital.model.ItemCarrinho;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ItemCarrinhoRepository extends JpaRepository<itemCarrinho, Long> {
+import java.util.List;
+import java.util.Optional;
+
+public interface ItemCarrinhoRepository extends JpaRepository<ItemCarrinho, Long> {
+
+    Optional<ItemCarrinho> findByDish(Dish dish);
 }
