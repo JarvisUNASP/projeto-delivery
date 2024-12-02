@@ -18,6 +18,7 @@ export interface Order {
 })
 export class OrderService {
   private apiUrl = 'http://localhost:8080/pedido';
+  private assingUrl = 'http://localhost:8080/cozinha/atribuirPedido';
 
   constructor(private http: HttpClient) {}
 
@@ -37,4 +38,14 @@ export class OrderService {
       })
     );
   }
+
+  assignOrder(id: number): Observable<string> {
+    return this.http.post<string>(`${this.assingUrl}/${id}`, null, { responseType: 'text' as 'json' }).pipe(
+      catchError((error) => {
+        console.error('Erro na requisição', error);
+        return throwError(() => new Error('Erro na requisição!'));
+      })
+    );
+  }
+    
 }

@@ -37,18 +37,19 @@ public class MotoboyService {
         return false;
     }
 
-    public String obterEnderecoECliente(Long pedidoId) {
+    public Cliente obterEnderecoECliente(Long pedidoId) {
         Optional<Pedido> pedidoOptional = pedidoService.buscarPedidoPorId(pedidoId);
         if (pedidoOptional.isPresent()) {
             Pedido pedido = pedidoOptional.get();
             Cliente cliente = pedido.getCliente();
-            return "Destinatário: " + cliente.getNome() + ", Endereço: " + cliente.getEndereco();
+            return cliente;
+        } else {
+            throw new RuntimeException("Pedido não encontrado");
         }
-        return "Pedido não encontrado!";
     }
 
 
-    public boolean finalizarPedido(Long pedidoId, Long motoboyId) {
+    public boolean finalizarPedido(Long pedidoId,Long motoboyId) {
         boolean sucesso = pedidoService.finalizarPedido(pedidoId);
         if (sucesso) {
             // Tornar o motoboy disponível novamente

@@ -18,6 +18,6 @@ public class Carrinho {
     private Double valorTotal;
 
     @OneToMany(mappedBy = "carrinho", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<itemCarrinho> itens = new ArrayList<>();
+    private List<ItemCarrinho> itens = new ArrayList<>();
 }
 

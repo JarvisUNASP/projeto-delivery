@@ -15,9 +15,9 @@ import { DishFormComponent } from './components/dish-form/dish-form.component';
 
 
 export const routes: Routes = [
-  { path: 'listar-pratos', component: DishListComponent }, // Funcionando
-  { path: 'criar-prato', component: DishFormComponent}, // Funcionando
-  { path: 'editar-prato/:id', component: DishFormComponent }, // Funcionando
+  { path: 'listar-pratos', component: DishListComponent },
+  { path: 'criar-prato', component: DishFormComponent},
+  { path: 'editar-prato/:id', component: DishFormComponent },
   { path: 'inicial-cliente', component: InicialClienteComponent},
   { path: 'page-bowl', component: PageBowlComponent },
   { path: 'carrinho', component: CarrinhoComponent },

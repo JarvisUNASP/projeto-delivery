@@ -1,6 +1,9 @@
 package com.ibeus.Comanda.Digital.controller;
 
+import com.ibeus.Comanda.Digital.model.Cliente;
 import com.ibeus.Comanda.Digital.model.Motoboy;
+import com.ibeus.Comanda.Digital.model.Pedido;
+import com.ibeus.Comanda.Digital.repository.PedidoRepository;
 import com.ibeus.Comanda.Digital.service.MotoboyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +20,9 @@ public class MotoboyController {
     @Autowired
     private MotoboyService motoboyService;
 
+    @Autowired
+    private PedidoRepository pedidoRepository;
+
     @PostMapping("/{id}/iniciar")
     public ResponseEntity<String> iniciarTrabalho(@PathVariable Long id) {
         boolean sucesso = motoboyService.iniciarTrabalho(id);
@@ -28,9 +34,8 @@ public class MotoboyController {
     }
 
     @GetMapping("/{pedidoId}/pedido-info")
-    public ResponseEntity<String> obterEnderecoECliente(@PathVariable Long pedidoId) {
-        String resposta = motoboyService.obterEnderecoECliente(pedidoId);
-        return ResponseEntity.ok(resposta);
+    public ResponseEntity<Cliente> obterDadosCliente(@PathVariable Long pedidoId) {
+        return ResponseEntity.ok(motoboyService.obterEnderecoECliente(pedidoId));
     }
 
     @PostMapping("/{motoboyId}/finalizarPedido/{pedidoId}")
@@ -60,6 +65,16 @@ public class MotoboyController {
             return ResponseEntity.ok("Status do Motoboy: " + status);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Motoboy não encontrado.");
+        }
+    }
+
+    @GetMapping("/{motoboyId}")
+    public ResponseEntity<Long> obterPedidoId(@PathVariable Long motoboyId) {
+        Optional<Pedido> pedidoOpt = pedidoRepository.findByMotoboyId(motoboyId);
+        if (pedidoOpt.isPresent()) {
+            return ResponseEntity.ok(pedidoOpt.get().getId());
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(0l);
         }
     }
 }

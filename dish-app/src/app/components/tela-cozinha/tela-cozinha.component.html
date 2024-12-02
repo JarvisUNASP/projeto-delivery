@@ -1,56 +1,23 @@
 <div class="comanda-pedidos">
     <h1>Pedidos</h1>
     <div class="pedidos">
-      <div class="pedido">
-        <h2 class="nome-pedido">Bowl 300ml</h2>
+      <div class="pedido" *ngFor="let order of pedidos">
+        <h2 class="nome-pedido">Pedido Nº {{order.id}}</h2>
         <div class="pedido-tempo-container">
           <h2 class="pedido-tempo">{{ formatarTempo(temposRestantes[0]) }}</h2>
         </div>
-        <div class="ingredientes">
-          <h5>Ingredientes:</h5>
-          <ul>
-            <li>Açaí</li>
-            <li>Leite em pó</li>
-            <li>Leite condensado</li>
-            <li>Banana</li>
-          </ul>
-        </div>
-        <button mat-button routerLink="/tela-motoboy1" class="finalizado">Finalizado</button>
-      </div>
-  
-      <div class="pedido">
-        <h2 class="nome-pedido">Bowl 500ml</h2>
         <div class="pedido-tempo-container">
-          <h2 class="pedido-tempo">{{ formatarTempo(temposRestantes[1]) }}</h2>
+          <h2 class="pedido-tempo">Valor total: {{order.valorTotal}}</h2>
+          <h2 class="pedido-tempo">Status do pedido: {{order.status}}</h2>
         </div>
         <div class="ingredientes">
-          <h5>Ingredientes:</h5>
+          <h5>Dados do cliente:</h5>
           <ul>
-            <li>Açaí</li>
-            <li>Leite condensado</li>
-            <li>Banana</li>
+            <li>Nome: {{order.cliente.nome}}</li>
+            <li>Endereço: {{order.cliente.endereco}}</li>
           </ul>
         </div>
-        <button mat-button routerLink="/tela-motoboy1" class="finalizado">Finalizado</button>
+        <button mat-button (click)="finalizarPedido(order.id)" class="finalizado">Finalizado</button>
       </div>
-  
-      <div class="pedido">
-        <h2 class="nome-pedido">Bowl 700ml</h2>
-        <div class="pedido-tempo-container">
-          <h2 class="pedido-tempo">{{ formatarTempo(temposRestantes[2]) }}</h2>
-        </div>
-        <div class="ingredientes">
-          <h5>Ingredientes:</h5>
-          <ul>
-            <li>Açaí</li>
-            <li>Leite condensado</li>
-            <li>Leite em pó</li>
-            <li>Banana</li>
-            <li>Granola</li>
-          </ul>
-        </div>
-        <button mat-button routerLink="/tela-motoboy1" class="finalizado">Finalizado</button>
       </div>
-    </div>
   </div>
-  
