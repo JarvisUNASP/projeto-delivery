@@ -2,11 +2,14 @@ package com.ibeus.Comanda.Digital.service;
 
 import com.ibeus.Comanda.Digital.model.*;
 import com.ibeus.Comanda.Digital.repository.CarrinhoRepository;
+import com.ibeus.Comanda.Digital.repository.ItemCarrinhoRepository;
 import com.ibeus.Comanda.Digital.repository.PedidoRepository;
 import com.ibeus.Comanda.Digital.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,10 +23,17 @@ public class PedidoService {
     private CarrinhoRepository carrinhoRepository;
 
     @Autowired
+    private ItemCarrinhoRepository itemCarrinhoRepository;
+
+    @Autowired
     private ClienteRepository clienteRepository;
 
     public Optional<Pedido> buscarPedidoPorId(Long pedidoId) {
         return pedidoRepository.findById(pedidoId);
+    }
+
+    public List<Pedido> buscarPedidos() {
+        return pedidoRepository.findAll();
     }
 
     public boolean finalizarPedido(Long pedidoId) {
@@ -55,7 +65,6 @@ public class PedidoService {
         // Criar um novo pedido e associar o cliente e o carrinho
         Pedido pedido = new Pedido();
         pedido.setCliente(cliente);
-        pedido.setCarrinho(carrinho);
         pedido.setStatus(StatusPedido.PREPARANDO); // Define o status inicial como PREPARANDO
         pedido.setValorTotal(carrinho.getValorTotal()); // Define o valor total do pedido com base no carrinho
 
@@ -63,6 +72,7 @@ public class PedidoService {
         pedidoRepository.save(pedido);
 
         // Limpar o carrinho após o pedido ser criado (opcional)
+        itemCarrinhoRepository.deleteAll();
         carrinho.getItens().clear();
         carrinho.setValorTotal(0.0);
         carrinhoRepository.save(carrinho);

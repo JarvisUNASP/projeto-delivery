@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/pedido")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -17,8 +19,8 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     // Endpoint para criar um pedido com o status inicial "PREPARANDO" e associar o único carrinho existente
-    @PostMapping("/criar")
-    public ResponseEntity<?> criarPedidoDoCarrinho(@RequestParam Long clienteId) {
+    @PostMapping("/criar/{clienteId}")
+    public ResponseEntity<?> criarPedidoDoCarrinho(@PathVariable Long clienteId) {
         try {
             Pedido pedido = pedidoService.criarPedidoDoCarrinho(clienteId);
             return ResponseEntity.ok(pedido);
@@ -34,6 +36,11 @@ public class PedidoController {
         return pedidoService.buscarPedidoPorId(pedidoId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Pedido>> buscarPedidos() {
+        return ResponseEntity.ok(pedidoService.buscarPedidos());
     }
 
     /*
